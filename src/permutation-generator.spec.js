@@ -1,4 +1,4 @@
-const {cloneDeep} = require('lodash');
+const { cloneDeep } = require('lodash');
 const permutationGenerator = require('./permutation-generator');
 
 describe('permutationGenerator', function () {
@@ -39,13 +39,13 @@ describe('permutationGenerator', function () {
   it('should generate 120 permutation for a 5 elements', function () {
     const input = [1, 2, 3, 4, 5];
     const result = collectAll(permutationGenerator(input));
-    expect(result.length).toEqual(120);
+    expect(result).toHaveLength(120);
   });
 });
 
 const collectAll = (iterator) => {
   const collected = [];
-  for (let item of iterator) {
+  for (const item of iterator) {
     collected.push(cloneDeep(item));
   }
   return collected;
