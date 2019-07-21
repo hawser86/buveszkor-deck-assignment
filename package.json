@@ -2,9 +2,7 @@
   "name": "buveszkor-deck-assignment",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
     "test": "npm run lint && jest",
     "test:watch": "jest --runInBand --watchAll",
     "lint": "eslint src/*.js"
