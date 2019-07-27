@@ -7,11 +7,28 @@ const yargs = require('yargs')
     type: 'string',
     alias: 'f',
     describe: 'path to csv exported from Google Form'
+  })
+  .option('result-length', {
+    type: 'number',
+    alias: 'l',
+    describe: 'the number of result collected',
+    default: 10
+  })
+  .option('maximum-difference', {
+    type: 'number',
+    alias: 'm',
+    describe: 'maximum difference allowed between the points of two assigned cards',
+    default: 5
   });
 
 try {
-  const { file } = yargs.argv;
-  const bestAssignments = findBestAssignment(file);
+  const { file, resultLength, maximumDifference } = yargs.argv;
+
+  const bestAssignments = findBestAssignment({
+    pathToVotes: file,
+    resultLength: resultLength,
+    maxDiffThreshold: maximumDifference
+  });
 
   const names = bestAssignments[0].assignment.map(a => a.name);
   console.log(`${names.join(',')},sum,maximum difference`);
