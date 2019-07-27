@@ -1,7 +1,7 @@
 const rateAssignment = require('./rate-assignment');
 
 describe('rateAssignment', function () {
-  it('should return the sum of the proper votes', function () {
+  it('should return the sum and max difference of the proper votes', function () {
     const votesByName = {
       'Bűvész Béla': { KS: 10, QS: 0, JS: 6 },
       'Mentalista Márk': { KS: 1, QS: 5, JS: 7 },
@@ -16,6 +16,6 @@ describe('rateAssignment', function () {
 
     const rating = rateAssignment(votesByName, assignment);
 
-    expect(rating).toEqual({ sum: 17 });
+    expect(rating).toEqual({ sum: 17, maxDiff: 8 });
   });
 });
