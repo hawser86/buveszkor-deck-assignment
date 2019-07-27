@@ -1,27 +1,25 @@
+const { keyBy } = require('lodash');
 const findBestAssignment = require('../src/find-best-assignment');
 const yargs = require('yargs')
   .usage('Usage: $0 --file [path]')
   .demandOption(['file'])
   .option('file', {
-    type: "string",
+    type: 'string',
     alias: 'f',
     describe: 'path to csv exported from Google Form'
   });
 
 try {
   const { file } = yargs.argv;
-  const startTime = Date.now();
   const bestAssignments = findBestAssignment(file);
 
-  for (const assignment of bestAssignments) {
-    console.log(`=== Rating (sum: ${assignment.rating.sum}, maxDiff: ${assignment.rating.maxDiff}) ===`);
-    for (const pair of assignment.assignment) {
-      console.log(`  ${pair.name}: ${pair.card} (${pair.point})`);
-    }
-  }
-
-  const duration = (Date.now() - startTime) / 1000;
-  console.log(`Duration: ${duration} sec`);
+  const names = bestAssignments[0].assignment.map(a => a.name);
+  console.log(`${names.join(',')},sum,maximum difference`);
+  bestAssignments.forEach(assignment => {
+    const cardsByName = keyBy(assignment.assignment, 'name');
+    const cardsWithPoints = names.map(name => `${cardsByName[name].card} (${cardsByName[name].point})`);
+    console.log(`${cardsWithPoints.join(',')},${assignment.rating.sum},${assignment.rating.maxDiff}`);
+  });
 } catch (e) {
   console.error('baj van :(');
   console.error(e);

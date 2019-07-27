@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm run lint && jest",
     "test:watch": "jest --runInBand --watchAll",
-    "lint": "eslint src/*.js"
+    "lint": "eslint src/*.js scripts/*.js"
   },
   "author": "",
   "license": "ISC",
