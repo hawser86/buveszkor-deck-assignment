@@ -16,24 +16,24 @@ describe('findBestAssignment', function () {
     });
 
     it('should load votes from give path', function () {
-      findBestAssignment('file/to/path');
+      findBestAssignment({ pathToVotes: 'file/to/path' });
       expect(loadVotes).toHaveBeenCalledWith('file/to/path');
     });
 
-    it('should return 10 assignments', function () {
-      const result = findBestAssignment();
-      expect(result).toHaveLength(10);
+    it('should return limited number of assignments', function () {
+      const result = findBestAssignment({ pathToVotes: '', resultLength: 5 });
+      expect(result).toHaveLength(5);
     });
 
-    it('should return assignments with maxWith <= 5', function () {
-      const results = findBestAssignment();
+    it('should return assignments with maxWith less than threshold', function () {
+      const results = findBestAssignment({ pathToVotes: '', maxDiffThreshold: 3 });
       results.forEach(result => {
-        expect(result.rating.maxDiff).toBeLessThanOrEqual(5);
+        expect(result.rating.maxDiff).toBeLessThanOrEqual(3);
       });
     });
 
     it('should return best assignment as 1st', function () {
-      const result = findBestAssignment();
+      const result = findBestAssignment({ pathToVotes: '' });
       expect(result[0]).toEqual({
         rating: { sum: 40, maxDiff: 0 },
         assignment: [
@@ -56,7 +56,7 @@ describe('findBestAssignment', function () {
     });
 
     it('should return best assignment with a maxDiff smaller than 5 as 1st', function () {
-      const result = findBestAssignment();
+      const result = findBestAssignment({ pathToVotes: '' });
       expect(result).toEqual([{
         rating: { sum: 9, maxDiff: 1 },
         assignment: [
