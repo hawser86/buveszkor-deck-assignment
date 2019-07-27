@@ -4,6 +4,7 @@ const permutationGenerator = require('./permutation-generator');
 const rateAssignment = require('./rate-assignment');
 
 const resultLength = 10;
+const maxDiffThreshold = 5;
 
 module.exports = pathToVotes => {
   const votes = loadVotes(pathToVotes);
@@ -43,17 +44,18 @@ const createAssignment = (names, permutation) => {
 };
 
 const newAssignmentFound = (topAssignments, rating) => {
-  return topAssignments.length < resultLength || rating > getWorstRating(topAssignments);
+  return rating.maxDiff <= maxDiffThreshold &&
+    (topAssignments.length < resultLength || rating.sum > getWorstSum(topAssignments));
 };
 
-const getWorstRating = assignments => {
-  const worst = _.last(assignments) || { rating: 0 };
-  return worst.rating;
+const getWorstSum = assignments => {
+  const worst = _.last(assignments);
+  return _.get(worst, 'rating.sum', 0);
 };
 
 const getTopAssignments = assignments => {
   return _(assignments)
-    .orderBy('rating', 'desc')
+    .orderBy('rating.sum', 'desc')
     .take(resultLength)
     .value();
 };
