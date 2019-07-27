@@ -29,10 +29,10 @@ describe('findBestAssignment', function () {
     expect(result[0]).toEqual({
       rating: 40,
       assignment: [
-        { name: 'Bűvész Béla', card: 'KS' },
-        { name: 'Fakír Feri', card: 'QS' },
-        { name: 'Mentalista Márk', card: 'JS' },
-        { name: 'Varázsló Vili', card: 'KH' }
+        { name: 'Bűvész Béla', card: 'KS', point: 10 },
+        { name: 'Fakír Feri', card: 'QS', point: 10 },
+        { name: 'Mentalista Márk', card: 'JS', point: 10 },
+        { name: 'Varázsló Vili', card: 'KH', point: 10 }
       ]
     });
   });

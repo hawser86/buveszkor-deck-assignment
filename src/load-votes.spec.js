@@ -42,8 +42,8 @@ describe('loadVotes', function () {
     it('should fill missing values with 5', function () {
       const votes = loadVotes('');
       expect(votes).toEqual([
-        { name: 'Bűvész Béla', KS: 10, QS: 0, JS: 6},
-        { name: 'Mentalista Márk', KS: 8, QS: 1, JS: 5},
+        { name: 'Bűvész Béla', KS: 10, QS: 0, JS: 6 },
+        { name: 'Mentalista Márk', KS: 8, QS: 1, JS: 5 },
         { name: 'Varázsló Vili', KS: 5, QS: 5, JS: 5 }
       ]);
     });

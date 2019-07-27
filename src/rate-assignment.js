@@ -1,9 +1,6 @@
-const { keyBy, sum } = require('lodash');
+const { sum } = require('lodash');
 
-module.exports = votes => {
-  const votesByName = keyBy(votes, 'name');
-  return assignment => {
-    const givenPoints = assignment.map(a => votesByName[a.name][a.card]);
-    return sum(givenPoints);
-  };
+module.exports = (votesByName, assignment) => {
+  const givenPoints = assignment.map(a => votesByName[a.name][a.card]);
+  return sum(givenPoints);
 };

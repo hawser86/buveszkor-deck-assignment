@@ -9,15 +9,16 @@ module.exports = pathToVotes => {
   const votes = loadVotes(pathToVotes);
   const cards = collectCards(votes);
   const names = collectNames(votes);
-  const rate = rateAssignment(votes);
+  const votesByName = _.keyBy(votes, 'name');
   let topAssignments = [];
 
   for (const permutation of permutationGenerator(cards)) {
     const assignment = createAssignment(names, permutation);
-    const rating = rate(assignment);
+    const rating = rateAssignment(votesByName, assignment);
 
     if (newAssignmentFound(topAssignments, rating)) {
-      topAssignments.push({ rating, assignment });
+      const assignmentWithPoints = assignment.map(a => ({ ...a, point: votesByName[a.name][a.card] }));
+      topAssignments.push({ rating, assignment: assignmentWithPoints });
       topAssignments = getTopAssignments(topAssignments);
     }
   }
