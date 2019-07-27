@@ -14,9 +14,9 @@ try {
   const bestAssignments = findBestAssignment(file);
 
   for (const assignment of bestAssignments) {
-    console.log(`=== Rating: ${assignment.rating} ===`);
+    console.log(`=== Rating: ${assignment.rating.sum} ===`);
     for (const pair of assignment.assignment) {
-      console.log(`  ${pair.name}: ${pair.card}`);
+      console.log(`  ${pair.name}: ${pair.card} (${pair.point})`);
     }
   }
 

@@ -27,7 +27,7 @@ describe('findBestAssignment', function () {
   it('should return best assignment as 1st', function () {
     const result = findBestAssignment();
     expect(result[0]).toEqual({
-      rating: 40,
+      rating: { sum: 40 },
       assignment: [
         { name: 'Bűvész Béla', card: 'KS', point: 10 },
         { name: 'Fakír Feri', card: 'QS', point: 10 },

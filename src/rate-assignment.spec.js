@@ -16,6 +16,6 @@ describe('rateAssignment', function () {
 
     const rating = rateAssignment(votesByName, assignment);
 
-    expect(rating).toEqual(17);
+    expect(rating).toEqual({ sum: 17 });
   });
 });
