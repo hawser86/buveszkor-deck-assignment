@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "csv-parse": "4.4.3",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "yargs": "^13.3.0"
   }
 }
