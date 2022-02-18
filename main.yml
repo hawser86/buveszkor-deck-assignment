@@ -1,0 +1,23 @@
+name: CI
+on:
+  workflow_dispatch:
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo JOB 1
+  job-2:
+    needs: ['job-1']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo JOB 2
+  job-3:
+    needs: ['job-1', 'job-2']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo JOB 3
+        
+        
