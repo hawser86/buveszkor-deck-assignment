@@ -9,6 +9,7 @@ jobs:
         run: echo JOB 1
   job-2:
     needs: ['job-1']
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
